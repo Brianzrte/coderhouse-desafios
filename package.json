@@ -2,11 +2,12 @@
   "name": "desafio-express",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,8 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^16.0.2",
+    "express": "^4.17.1",
+    "uuid": "^9.0.0"
   }
 }
