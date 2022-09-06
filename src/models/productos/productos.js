@@ -42,4 +42,4 @@ class Productos {
 
 }
 
-export default Productos();
+export default Productos;

@@ -1,4 +1,4 @@
-import {Productos} from "../../models/productos/productos.js";
+import Productos from "../../models/productos/productos.js";
 
 const productModel = new Productos();
 
