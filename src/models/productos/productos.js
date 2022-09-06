@@ -1,7 +1,5 @@
 import productos from '../../database/db.js';
-import { v4 as uuidv4 } from 'uuid';
-
-
+import generateID from '../../utils/generateID.js';
 
 class Productos {
    
@@ -9,21 +7,22 @@ class Productos {
         this.productos = productos;
     }
 
-    async find() {
+    find() {
         return this.productos;
     }
 
-    async findById(id) {
-        return this.productos.find(producto => producto.id === id);
+    findById(id) {
+        const producto =  this.productos.find(producto => producto.id == id);
+        return (producto) ? producto : false;
     }
 
-    async create(producto) {
-        const nuevoProducto = { ...producto, id: uuidv4() };
+     create(producto) {
+        const nuevoProducto = { ...producto, id: generateID() };
         this.productos.push(nuevoProducto);
         return nuevoProducto;
     }
 
-    async update(product) {
+     update(product) {
         const index = this.productos.findIndex(producto => producto.id === product.id);
         if(index === -1) return null;
         this.productos[index] = product;
@@ -31,7 +30,7 @@ class Productos {
     }
     
 
-    async delete(id) {
+     delete(id) {
         const index = this.productos.findIndex(producto => producto.id === id);
         if(index === -1) return null;
 

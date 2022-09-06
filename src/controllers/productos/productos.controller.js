@@ -15,8 +15,8 @@ const getById = async (req, res, next) => {
     try {
         const { id } = req.params;
         if (!id) throw new Error('Error: no se encontro id de producto');
-        
-        const producto = await Productos.findById(id);        
+        const producto = await productModel.findById(id);
+        console.log(producto);
         if (!producto) throw new Error('Error: no se encontro producto');
         res.status(200).json(producto);
     
@@ -50,7 +50,7 @@ const update = async (req, res, next) => {
         const { id } = req.params;
         if (!id) throw new Error('Error: no se encontro id de producto');
 
-        const producto = await Productos.findByIdAndUpdate(id, req.body);
+        const producto = await productModel.findByIdAndUpdate(id, req.body);
         if (!producto) throw new Error('Error: no se encontro producto');
         res.status(200).json(producto);
 
@@ -64,7 +64,7 @@ const remove = async (req, res, next) => {
         const { id } = req.params;
         if (!id) throw new Error('Error: no se encontro id de producto');
 
-        const producto = await Productos.findByIdAndDelete(id);
+        const producto = await productModel.delete(id);
         if (!producto) throw new Error('Error: no se encontro producto');
         res.status(200).json(producto);
 
