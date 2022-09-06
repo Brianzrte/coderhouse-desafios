@@ -36,7 +36,7 @@ const create = async (req, res, next) => {
             thumbnail
         }
         
-        const productoGuardado = await Productos.create(producto);
+        const productoGuardado = await productModel.create(producto);
         if(!productoGuardado) throw new Error('Error: no se pudo guardar el producto');
         res.status(201).json(productoGuardado);
 
