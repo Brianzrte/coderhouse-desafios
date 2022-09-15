@@ -1,0 +1,37 @@
+extends ../index
+
+block main 
+    include ../mixins/form
+    include ../mixins/table
+
+    .container.p-4
+        .row
+            .col-12.mb-5.text-center
+                h3 Desafio Coder -- Motores de plantillas: PUG
+                    if (showForm)
+                        .row
+                            +form
+                        .row.d-flex.justify-content-center
+                            .col-2
+                                a(href="/productos").btn.btn-success ver productos
+                    else
+                        .row
+                            table.table.table-dark
+                                thead
+                                    tr
+                                        th(scope="col") #
+                                        th(scope="col") Nombre
+                                        th(scope="col") Precio
+                                        th(scope="col") Imagen
+                                tbody
+                                    if (productos)
+                                        each producto in productos
+                                            +table(producto.nombre, producto.precio, producto.thumbnail, producto.id)
+                                    else
+                                        tr
+                                            td(colspan="4") No hay productos
+                            .row.d-flex.justify-content-center 
+                                .col-2
+                                    a(href="/").btn.btn-success ingresar producto
+                                        
+

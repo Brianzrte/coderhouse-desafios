@@ -1,0 +1,14 @@
+mixin form
+
+    form(action="/api/productos", method="post").row.g-3
+        .col-10
+            label(for="intNombre" class="form-label fs-6") Nombre
+            input(type="text" class="form-control" id="inpNombre" name="nombre" placeholder="Nombre del producto")
+        .col-2
+            label(for="precio" class="form-label fs-6") Precio
+            input(type="number" class="form-control" id="precio" name="precio" placeholder="Precio del producto")
+        .col-md-12
+            label(for="thumbnail" class="form-label fs-6") Imagen
+            input(type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="URL de la imagen")
+        .col-12
+            button(type="submit").btn.btn-primary.mb-5 Guardar

@@ -1,0 +1,8 @@
+mixin table(nombre, precio, thumbnail, id)
+
+    tr
+        th(scope="row") #{id}
+        td #{nombre}
+        td #{precio}
+        td 
+            img(src=thumbnail alt=nombre style="width: 3rem")
