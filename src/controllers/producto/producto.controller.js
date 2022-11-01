@@ -1,10 +1,13 @@
-import productoApi from "../../models/index.js";
+import {productoApi} from "../../models/index.js";
 
 const getController = async (req, res, next) => {
     try{
-        return (!req.params.id) 
-            ? res.status(200).json(await productoApi.getAll())
-            : res.status(200).json(await productoApi.getById(req.params.id));
+        const producto = (!req.params.id) 
+            ?  await productoApi.getAll()
+            :  await productoApi.getById(req.params.id)
+        if (!producto) throw new Error('Error: no se encontro productoApi');
+
+        return res.status(200).json(producto);
 
     } catch (error) {
         next(error);
@@ -15,12 +18,12 @@ const saveController = async (req, res, next) => {
     
     try{
         if(req.body.constructor === Object && Object.keys(req.body).length === 0)
-            throw new Error('Error: no se encontro productoApi');
+            throw new Error('Error: no se encontro producto');
     
         //verifico si el codigo ya existe
-        const productoApi = await productoApi.getByCode(req.body.codigo);
-        console.log(productoApi);
-        if(productoApi) throw new Error('Error: el codigo ya existe');
+        const producto = await productoApi.getByCode(req.body.codigo);
+        console.log(producto);
+        if(producto) throw new Error('Error: el codigo ya existe');
 
         res.status(201).json(await productoApi.save({
             nombre: req.body.nombre,
@@ -66,7 +69,7 @@ const deleteController = async (req, res, next) => {
         const id = req.params.id;
         if (!id) throw new Error('Error: no se encontro id de productoApi');
 
-        res.status(200).json( await productoApis.delete(id) );
+        res.status(200).json( await productoApi.delete(id) );
     } catch (error) {
         next(error);
     }

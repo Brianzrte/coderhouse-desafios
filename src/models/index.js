@@ -4,7 +4,7 @@ import Carrito from "./carrito/carrito.model.js";
 const carritoApi = new Carrito();
 const productoApi = new Producto();
 
-export default{
+export {
     productoApi,
     carritoApi 
 }

@@ -20,12 +20,12 @@
     "stock": 455
   },
   {
-    "nombre": "harina",
-    "precio": 50,
-    "descripcion": "harina leudante",
-    "codigo": 30025,
-    "foto": "https://as01.epimg.net/argentina/imagenes/2021/05/26/actualidad/1622031962_602856_1622032179_noticia_normal.jpg",
-    "stock": 45,
+    "nombre": "pure de tomate",
+    "precio": 105,
+    "descripcion": "dia",
+    "codigo": 3006,
+    "foto": "https://m.media-amazon.com/images/I/71pC93kJ9GL._AC_SL1000_.jpg",
+    "stock": 33,
     "timestamp": "1643326641298",
     "id": "eb0133d1-96c5-43c2-bc14-80b73e6dd311"
   }
