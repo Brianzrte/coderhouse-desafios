@@ -1,0 +1,38 @@
+[
+  {
+    "id": "e97e5d90-1252-4b69-82f6-3d0d8a9f2d43",
+    "productos": [
+      {
+        "nombre": "arroz",
+        "precio": 89,
+        "descripcion": "arroz blanco",
+        "codigo": 3004,
+        "foto": "https://m.media-amazon.com/images/I/71pC93kJ9GL._AC_SL1000_.jpg",
+        "stock": 9,
+        "timestamp": "1643326641298",
+        "id": "8af869c6-c7c8-4bc9-8eaa-db91e6c51465"
+      },
+      {
+        "nombre": "fideos",
+        "precio": 95,
+        "descripcion": "fideos moñito",
+        "codigo": 3005,
+        "foto": "https://walmartar.vteximg.com.br/arquivos/ids/868618-1000-1000/Fideos-Secos-Mo-os-Matarazzo-500-Gr-1-13686.jpg?v=637296528690670000",
+        "stock": 34,
+        "timestamp": "1643326641298",
+        "id": "c97e7754-bc33-4f6e-a88c-1fdad950d963"
+      },
+      {
+        "nombre": "harina",
+        "precio": 50,
+        "descripcion": "harina leudante",
+        "codigo": 30025,
+        "foto": "https://as01.epimg.net/argentina/imagenes/2021/05/26/actualidad/1622031962_602856_1622032179_noticia_normal.jpg",
+        "stock": 45,
+        "timestamp": "1643326641298",
+        "id": "eb0133d1-96c5-43c2-bc14-80b73e6dd311"
+      }
+    ],
+    "timestamp": "1643326641298"
+  }
+]
