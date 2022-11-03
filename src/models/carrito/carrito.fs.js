@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 const ___filename = fileURLToPath(import.meta.url);
 const PATH_ROUTER = path.dirname(___filename);
 
-import Producto from '../producto/producto.model.js';
+import Producto from '../producto/producto.fs.js';
 const productos = new Producto();
 
 

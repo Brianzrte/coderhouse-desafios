@@ -22,6 +22,7 @@ fs.readdirSync(PATH_ROUTER).filter(async (file) => {
         console.log(`Ruta ${file} cargada`);
     });
 
+    //si no encuentra la ruta, devuelve un 404
     router.use('*', (req, res) => {
         res.status(404).json({
             error: -2,
@@ -30,7 +31,6 @@ fs.readdirSync(PATH_ROUTER).filter(async (file) => {
     });
 });
 
-//si no encuentra la ruta, devuelve un 404
 
 
 export default router;
