@@ -1,33 +1,56 @@
-const contenedor = require('./contenedor.js');
-const productos = new contenedor('productos.txt');
+const express = require('express');
+const rutaApi = require('./routers/app.routers');
+const path = require('path');
+const { Server: HttpServer } = require('http');
+const { Server: IOServer } = require('socket.io');
 
+const app = express();
+const httpserver = new HttpServer(app);
+const io = new IOServer(httpserver);
 
-const producto = {
-    title : 'Producto 1',
-    price : 100,
-    thumbnail : 'https://www3.gobiernodecanarias.org/medusa/mediateca/ecoescuela/wp-content/uploads/sites/2/2013/11/11-Libro-1024x723.png'
+const PORT = process.env.PORT || 8080;
+
+//data
+const { Chat } = require('./models/index');
+const chat = new Chat();
+const { Productos } = require('./models/index');
+const productos = new Productos();
+
+const regenChat = () => {
+    const chats = chat.getAll();
+    chats.then(data => {
+        io.sockets.emit('regenerarChat', data);
+    });
 }
 
-//guardar un producto
+//publics static files
+app.use(express.static(path.resolve(__dirname, 'public')));
 
-productos.save(producto)
-    .then(id => console.log('Producto guardado con id: ', id))
-    .catch(error => console.log(error));
+io.on('connection', async socket => {
+   
+    console.log('Cliente conectado: ' + socket.id);
+    regenChat();
+
+    socket.on('incomingMessage', async (message) => {
+        if(message.email){
+            await chat.save(message);
+            socket.emit('enviarMensaje', message);
+            regenChat();
+        }
+    });
+
+    socket.emit('regenerarProductos', await productos.getAll());    
+});
+
+//rutas
+app.use('/api', rutaApi);
+
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public/index.html'));
+})
 
 
 
-//ver todos los productos
-Promise.resolve(productos.getAll())
-    .then(productos => console.log('Productos: ', productos))
-    .catch(error => console.log(error));
-
-//ver un producto por id
-Promise.resolve(productos.getById(1))
-    .then(producto => console.log('Producto: ', producto))
-    .catch(error => console.log(error));
-
-//eliminar un producto por id
-Promise.resolve(productos.deleteById(8))
-    .then(producto => console.log(producto))
-    .catch(error => console.log(error));
-
+httpserver.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+})
