@@ -19,7 +19,7 @@ socket.on('enviarMensaje', (message) => {
 
 socket.on('regenerarProductos', (productos) => {
     
-    fetch('http://localhost:8080/template/tableProducts.tpl')
+    fetch('http://localhost:8080/template/tableProducts.hbs')
     .then(res => res.text())
     .then(data => {
         let template = Handlebars.compile(data);
@@ -33,7 +33,7 @@ socket.on('regenerarProductos', (productos) => {
 
 socket.on('regenerarChat', (chat) => {
 
-    fetch('http://localhost:8080/template/listMessages.tpl')
+    fetch('http://localhost:8080/template/listMessages.hbs')
     .then(res => res.text())
     .then(data => {
         let template = Handlebars.compile(data);
@@ -43,6 +43,20 @@ socket.on('regenerarChat', (chat) => {
     .catch(err => console.log(err));
     
 });
+
+
+fetch('http://localhost:8080/api/productos-test').then(res => res.json()).then(productos => {
+    console.log(productos);
+    fetch('http://localhost:8080/template/tableProducts-test.hbs').then(res => res.text()).then(data => {
+        console.log(productos, 2);
+        let template = Handlebars.compile(data);
+        let html = template({productos});
+        document.getElementById('tablaProductos-test').innerHTML = html;
+    })
+})
+
+
+
 
 
 
